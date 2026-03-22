@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sq">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guest Guide — Welcome to Tirana!</title>
+<title>Guest Guide — Mirë se vini në Tiranë!</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -15,467 +15,447 @@
     --stone: #8C8272;
     --light-olive: #E8EDDF;
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--navy); line-height: 1.7; font-size: 16px; overflow-x: hidden; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--navy); line-height:1.7; font-size:16px; overflow-x:hidden; }
 
-  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem 2rem; position: relative; overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; z-index: 0; }
-  .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
-  .hero-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(165deg, rgba(27,42,74,0.7) 0%, rgba(91,107,74,0.35) 50%, transparent 100%); }
-  .hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 120px; background: linear-gradient(to top, var(--cream), transparent); z-index: 2; }
-  .hero-content { position: relative; z-index: 3; max-width: 700px; animation: fadeUp 1s ease-out; }
-  .hero-badge { display: inline-block; background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.25); padding: 0.4rem 1.2rem; border-radius: 50px; color: #fff; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.5rem; }
-  .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 4.5rem); color: #fff; line-height: 1.1; margin-bottom: 1rem; }
-  .hero h1 em { color: var(--gold); font-style: italic; }
-  .hero p { color: rgba(255,255,255,0.85); font-size: 1.1rem; max-width: 520px; margin-bottom: 2rem; }
-  .hero-cta { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--terracotta); color: #fff; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 500; transition: all 0.3s; }
-  .hero-cta:hover { background: #a85c3a; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(196,112,75,0.3); }
+  /* Language system */
+  [data-lang-en] { display:none; }
+  body.en [data-lang-sq] { display:none; }
+  body.en [data-lang-en] { display:revert; }
+  span[data-lang-en] { display:none; }
+  body.en span[data-lang-sq] { display:none; }
+  body.en span[data-lang-en] { display:inline; }
 
-  .side-nav { position: fixed; right: 1.5rem; top: 50%; transform: translateY(-50%); z-index: 100; display: flex; flex-direction: column; gap: 0.7rem; }
-  .side-nav a { width: 10px; height: 10px; border-radius: 50%; background: var(--stone); opacity: 0.3; transition: all 0.3s; display: block; position: relative; }
-  .side-nav a:hover, .side-nav a.active { opacity: 1; background: var(--terracotta); transform: scale(1.4); }
-  .side-nav a .nav-label { position: absolute; right: 20px; top: 50%; transform: translateY(-50%); background: var(--navy); color: #fff; padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 0.7rem; white-space: nowrap; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
-  .side-nav a:hover .nav-label { opacity: 1; }
+  .lang-toggle { position:fixed; top:1rem; right:1rem; z-index:300; display:flex; border-radius:50px; overflow:hidden; border:2px solid rgba(255,255,255,0.25); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); background:rgba(27,42,74,0.6); box-shadow:0 4px 20px rgba(0,0,0,0.15); }
+  .lang-toggle button { padding:0.45rem 0.9rem; border:none; cursor:pointer; font-family:'DM Sans',sans-serif; font-size:0.78rem; font-weight:600; background:transparent; color:rgba(255,255,255,0.6); transition:all 0.3s; -webkit-tap-highlight-color:transparent; }
+  .lang-toggle button.active { background:var(--terracotta); color:#fff; }
 
-  .section { padding: 5rem 2rem; max-width: 900px; margin: 0 auto; }
-  .section-label { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--terracotta); font-weight: 600; margin-bottom: 1rem; }
-  .section-label::before { content: ''; width: 30px; height: 2px; background: var(--terracotta); display: block; }
-  .section h2 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); color: var(--navy); margin-bottom: 1.5rem; line-height: 1.2; }
-  .section > p, .section-intro { color: var(--stone); font-size: 1.05rem; margin-bottom: 1.5rem; }
+  .hero { min-height:100vh; background:linear-gradient(165deg,rgba(27,42,74,0.75) 0%,rgba(91,107,74,0.4) 50%,transparent 100%),url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=1400&q=80') center/cover; display:flex; flex-direction:column; justify-content:flex-end; padding:3rem 2rem; position:relative; }
+  .hero::after { content:''; position:absolute; bottom:0; left:0; right:0; height:120px; background:linear-gradient(to top,var(--cream),transparent); }
+  .hero-content { position:relative; z-index:2; max-width:700px; animation:fadeUp 1s ease-out; }
+  .hero-badge { display:inline-block; background:rgba(255,255,255,0.15); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.25); padding:0.4rem 1.2rem; border-radius:50px; color:#fff; font-size:0.8rem; letter-spacing:2px; text-transform:uppercase; margin-bottom:1.5rem; }
+  .hero h1 { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,7vw,4.5rem); color:#fff; line-height:1.1; margin-bottom:1rem; }
+  .hero h1 em { color:var(--gold); font-style:italic; }
+  .hero>div>p { color:rgba(255,255,255,0.85); font-size:1.1rem; max-width:500px; margin-bottom:2rem; }
+  .hero-cta { display:inline-flex; align-items:center; gap:0.5rem; background:var(--terracotta); color:#fff; padding:1rem 2rem; border-radius:50px; text-decoration:none; font-weight:500; transition:all 0.3s; }
+  .hero-cta:hover { background:#a85c3a; transform:translateY(-2px); box-shadow:0 10px 30px rgba(196,112,75,0.3); }
 
-  .steps { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
-  .step { display: flex; gap: 1.5rem; background: #fff; border-radius: 20px; padding: 2rem; border: 1px solid rgba(0,0,0,0.04); box-shadow: 0 2px 20px rgba(0,0,0,0.04); transition: all 0.3s; position: relative; overflow: hidden; }
-  .step:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
-  .step::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--terracotta); border-radius: 4px; opacity: 0; transition: opacity 0.3s; }
-  .step:hover::before { opacity: 1; }
-  .step-number { flex-shrink: 0; width: 50px; height: 50px; border-radius: 50%; background: var(--light-olive); color: var(--olive); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; }
-  .step-content h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--navy); }
-  .step-content p { color: var(--stone); font-size: 0.95rem; margin-bottom: 0.5rem; }
-  .tip { margin-top: 0.75rem; padding: 0.6rem 1rem; background: var(--light-olive); border-radius: 10px; font-size: 0.85rem; color: var(--olive); display: flex; align-items: flex-start; gap: 0.5rem; }
-  .tip-icon { font-size: 1.1rem; flex-shrink: 0; }
-  .map-link { display: inline-flex; align-items: center; gap: 0.3rem; color: var(--terracotta); text-decoration: none; font-weight: 600; font-size: 0.85rem; margin-top: 0.5rem; transition: color 0.2s; }
-  .map-link:hover { color: #a85c3a; text-decoration: underline; }
+  .side-nav { position:fixed; right:1.5rem; top:50%; transform:translateY(-50%); z-index:100; display:flex; flex-direction:column; gap:0.7rem; }
+  .side-nav a { width:10px; height:10px; border-radius:50%; background:var(--stone); opacity:0.3; transition:all 0.3s; display:block; position:relative; }
+  .side-nav a:hover,.side-nav a.active { opacity:1; background:var(--terracotta); transform:scale(1.4); }
+  .side-nav a .nav-label { position:absolute; right:20px; top:50%; transform:translateY(-50%); background:var(--navy); color:#fff; padding:0.3rem 0.8rem; border-radius:6px; font-size:0.7rem; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity 0.2s; }
+  .side-nav a:hover .nav-label { opacity:1; }
 
-  .photo-step { background: #fff; border-radius: 20px; overflow: hidden; border: 1px solid rgba(0,0,0,0.04); box-shadow: 0 2px 20px rgba(0,0,0,0.04); transition: all 0.3s; margin-bottom: 1.5rem; }
-  .photo-step:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
-  .photo-step img { width: 100%; max-height: 420px; object-fit: cover; display: block; }
-  .photo-step-body { padding: 1.5rem 2rem; display: flex; gap: 1.2rem; align-items: flex-start; }
-  .photo-step-num { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: var(--terracotta); color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; }
-  .photo-step-text h4 { font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 0.3rem; }
-  .photo-step-text p { font-size: 0.9rem; color: var(--stone); margin: 0; }
+  .section { padding:5rem 2rem; max-width:900px; margin:0 auto; }
+  .section-label { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.75rem; letter-spacing:3px; text-transform:uppercase; color:var(--terracotta); font-weight:600; margin-bottom:1rem; }
+  .section-label::before { content:''; display:block; width:30px; height:2px; background:var(--terracotta); }
+  .section h2 { font-family:'Playfair Display',serif; font-size:clamp(2rem,5vw,3rem); color:var(--navy); margin-bottom:1.5rem; line-height:1.2; }
+  .section>p,.section-intro { color:var(--stone); font-size:1.05rem; margin-bottom:1.5rem; }
 
-  .warning-banner { background: #FEF3E2; border: 2px solid #F0C040; border-radius: 16px; padding: 1.5rem 2rem; display: flex; align-items: flex-start; gap: 1rem; margin: 1.5rem 0; }
-  .warning-banner p { margin: 0; font-size: 0.95rem; color: #7A5C00; }
+  .steps { display:flex; flex-direction:column; gap:1.5rem; margin-top:2rem; }
+  .step { display:flex; gap:1.5rem; background:#fff; border-radius:20px; padding:2rem; border:1px solid rgba(0,0,0,0.04); box-shadow:0 2px 20px rgba(0,0,0,0.04); transition:all 0.3s; position:relative; overflow:hidden; }
+  .step:hover { transform:translateY(-3px); box-shadow:0 8px 30px rgba(0,0,0,0.08); }
+  .step::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:var(--terracotta); border-radius:4px; opacity:0; transition:opacity 0.3s; }
+  .step:hover::before { opacity:1; }
+  .step-number { flex-shrink:0; width:50px; height:50px; border-radius:50%; background:var(--light-olive); color:var(--olive); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; }
+  .step-content h3 { font-size:1.15rem; font-weight:600; margin-bottom:0.5rem; color:var(--navy); }
+  .step-content p { color:var(--stone); font-size:0.95rem; margin-bottom:0; }
+  .tip { margin-top:0.75rem; padding:0.6rem 1rem; background:var(--light-olive); border-radius:10px; font-size:0.85rem; color:var(--olive); display:flex; align-items:flex-start; gap:0.5rem; }
+  .tip-icon { font-size:1.1rem; flex-shrink:0; }
+  .map-link { display:inline-flex; align-items:center; gap:0.3rem; color:var(--terracotta); text-decoration:none; font-weight:600; font-size:0.85rem; margin-top:0.5rem; transition:color 0.2s; }
+  .map-link:hover { color:#a85c3a; text-decoration:underline; }
 
-  .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; margin-top: 2rem; }
-  .rule-card { background: #fff; border-radius: 16px; padding: 1.5rem; border: 1px solid rgba(0,0,0,0.04); box-shadow: 0 2px 15px rgba(0,0,0,0.03); display: flex; gap: 1rem; align-items: flex-start; transition: all 0.3s; }
-  .rule-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.07); }
-  .rule-icon { width: 46px; height: 46px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
-  .rule-icon.red { background: #FDE8E8; } .rule-icon.green { background: #E8F5E8; } .rule-icon.blue { background: #E8EEF5; } .rule-icon.yellow { background: #FEF3E2; } .rule-icon.purple { background: #F0E8F5; }
-  .rule-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--navy); }
-  .rule-card p { font-size: 0.85rem; color: var(--stone); margin: 0; line-height: 1.5; }
+  .rules-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.2rem; margin-top:2rem; }
+  .rule-card { background:#fff; border-radius:16px; padding:1.5rem; border:1px solid rgba(0,0,0,0.04); box-shadow:0 2px 15px rgba(0,0,0,0.03); display:flex; gap:1rem; align-items:flex-start; transition:all 0.3s; }
+  .rule-card:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,0.07); }
+  .rule-icon { width:46px; height:46px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; flex-shrink:0; }
+  .rule-icon.red{background:#FDE8E8}.rule-icon.green{background:#E8F5E8}.rule-icon.blue{background:#E8EEF5}.rule-icon.yellow{background:#FEF3E2}.rule-icon.purple{background:#F0E8F5}
+  .rule-card h4 { font-size:0.95rem; font-weight:600; margin-bottom:0.3rem; color:var(--navy); }
+  .rule-card p { font-size:0.85rem; color:var(--stone); margin:0; line-height:1.5; }
 
-  .guide-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
-  .guide-tab { padding: 0.6rem 1.2rem; border-radius: 50px; border: 2px solid rgba(0,0,0,0.08); background: #fff; cursor: pointer; font-size: 0.85rem; font-weight: 500; color: var(--stone); transition: all 0.3s; }
-  .guide-tab:hover, .guide-tab.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .guide-tabs { display:flex; gap:0.5rem; margin-bottom:2rem; flex-wrap:wrap; }
+  .guide-tab { padding:0.6rem 1.2rem; border-radius:50px; border:2px solid rgba(0,0,0,0.08); background:#fff; cursor:pointer; font-size:0.85rem; font-weight:500; color:var(--stone); transition:all 0.3s; }
+  .guide-tab:hover,.guide-tab.active { background:var(--navy); color:#fff; border-color:var(--navy); }
 
-  .places-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.2rem; }
-  .place-card { background: #fff; border-radius: 16px; padding: 1.5rem; border: 1px solid rgba(0,0,0,0.04); box-shadow: 0 2px 15px rgba(0,0,0,0.03); transition: all 0.3s; }
-  .place-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
-  .place-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
-  .place-card h4 { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.25rem; }
-  .place-tag { font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 50px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; flex-shrink: 0; }
-  .tag-food { background: #FEF3E2; color: #B8860B; } .tag-sight { background: #E8EEF5; color: #3B5998; } .tag-hood { background: #E8F5E8; color: var(--olive); } .tag-night { background: #F0E8F5; color: #7B3FA0; }
-  .place-rating { font-size: 0.8rem; color: var(--gold); margin-bottom: 0.3rem; }
-  .place-desc { font-size: 0.85rem; color: var(--stone); line-height: 1.5; margin-bottom: 0.75rem; }
-  .place-address { font-size: 0.78rem; color: #aaa; margin-bottom: 0.5rem; }
-  .place-links a { font-size: 0.8rem; color: var(--terracotta); text-decoration: none; font-weight: 600; }
-  .place-links a:hover { color: #a85c3a; }
+  .places-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1.2rem; }
+  .place-card { background:#fff; border-radius:16px; padding:1.5rem; border:1px solid rgba(0,0,0,0.04); box-shadow:0 2px 15px rgba(0,0,0,0.03); transition:all 0.3s; }
+  .place-card:hover { transform:translateY(-3px); box-shadow:0 8px 25px rgba(0,0,0,0.08); }
+  .place-card-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:0.5rem; }
+  .place-card h4 { font-size:1rem; font-weight:600; color:var(--navy); margin-bottom:0.25rem; }
+  .place-tag { font-size:0.7rem; padding:0.2rem 0.6rem; border-radius:50px; font-weight:600; letter-spacing:0.5px; text-transform:uppercase; flex-shrink:0; }
+  .tag-food{background:#FEF3E2;color:#B8860B}.tag-sight{background:#E8EEF5;color:#3B5998}.tag-hood{background:#E8F5E8;color:var(--olive)}.tag-night{background:#F0E8F5;color:#7B3FA0}
+  .place-rating { font-size:0.8rem; color:var(--gold); margin-bottom:0.3rem; }
+  .place-desc { font-size:0.85rem; color:var(--stone); line-height:1.5; margin-bottom:0.75rem; }
+  .place-address { font-size:0.78rem; color:#aaa; margin-bottom:0.5rem; }
+  .place-links { display:flex; gap:0.8rem; }
+  .place-links a { font-size:0.8rem; color:var(--terracotta); text-decoration:none; font-weight:600; transition:color 0.2s; }
+  .place-links a:hover { color:#a85c3a; }
 
-  .guidebook-cta { margin-top: 3rem; background: linear-gradient(135deg, var(--navy) 0%, #2a3d6b 100%); border-radius: 24px; padding: 3rem; text-align: center; position: relative; overflow: hidden; }
-  .guidebook-cta::before { content: ''; position: absolute; top: -50%; right: -30%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(212,168,83,0.2), transparent 70%); border-radius: 50%; }
-  .guidebook-cta h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: #fff; margin-bottom: 0.75rem; position: relative; }
-  .guidebook-cta p { color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; position: relative; }
-  .guidebook-btn { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--gold); color: var(--navy); padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s; position: relative; }
-  .guidebook-btn:hover { background: #e0b85e; transform: translateY(-2px); box-shadow: 0 10px 30px rgba(212,168,83,0.3); }
+  .guidebook-cta { margin-top:3rem; background:linear-gradient(135deg,var(--navy) 0%,#2a3d6b 100%); border-radius:24px; padding:3rem; text-align:center; position:relative; overflow:hidden; }
+  .guidebook-cta::before { content:''; position:absolute; top:-50%; right:-30%; width:300px; height:300px; background:radial-gradient(circle,rgba(212,168,83,0.2),transparent 70%); border-radius:50%; }
+  .guidebook-cta h3 { font-family:'Playfair Display',serif; font-size:1.8rem; color:#fff; margin-bottom:0.75rem; position:relative; }
+  .guidebook-cta p { color:rgba(255,255,255,0.75); margin-bottom:1.5rem; position:relative; }
+  .guidebook-btn { display:inline-flex; align-items:center; gap:0.5rem; background:var(--gold); color:var(--navy); padding:1rem 2.5rem; border-radius:50px; text-decoration:none; font-weight:600; font-size:1rem; transition:all 0.3s; position:relative; }
+  .guidebook-btn:hover { background:#e0b85e; transform:translateY(-2px); box-shadow:0 10px 30px rgba(212,168,83,0.3); }
+  .divider { width:60px; height:3px; background:linear-gradient(to right,var(--terracotta),var(--gold)); margin:0 auto; border-radius:3px; }
+  .info-banner { background:var(--light-olive); border-radius:16px; padding:1.5rem 2rem; display:flex; align-items:flex-start; gap:1rem; margin-top:1.5rem; }
+  .info-banner .banner-icon { font-size:1.5rem; flex-shrink:0; }
+  .info-banner p { margin:0; font-size:0.95rem; color:var(--olive); }
 
-  .divider { width: 60px; height: 3px; background: linear-gradient(to right, var(--terracotta), var(--gold)); margin: 0 auto; border-radius: 3px; }
-  .info-banner { background: var(--light-olive); border-radius: 16px; padding: 1.5rem 2rem; display: flex; align-items: flex-start; gap: 1rem; margin-top: 1.5rem; }
-  .info-banner .banner-icon { font-size: 1.5rem; flex-shrink: 0; }
-  .info-banner p { margin: 0; font-size: 0.95rem; color: var(--olive); }
+  .footer { background:var(--navy); padding:4rem 2rem; text-align:center; color:rgba(255,255,255,0.7); }
+  .footer h3 { font-family:'Playfair Display',serif; font-size:1.6rem; color:#fff; margin-bottom:0.5rem; }
+  .footer p { margin-bottom:1.5rem; }
+  .contact-row { display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap; }
+  .contact-pill { display:inline-flex; align-items:center; gap:0.5rem; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.12); padding:0.8rem 1.5rem; border-radius:50px; color:#fff; text-decoration:none; font-size:0.95rem; transition:all 0.3s; }
+  .contact-pill:hover { background:rgba(255,255,255,0.15); transform:translateY(-2px); }
+  .footer-note { margin-top:3rem; font-size:0.8rem; opacity:0.5; }
 
-  .footer { background: var(--navy); padding: 4rem 2rem; text-align: center; color: rgba(255,255,255,0.7); }
-  .footer h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: #fff; margin-bottom: 0.5rem; }
-  .footer p { margin-bottom: 1.5rem; }
-  .contact-row { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
-  .contact-pill { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); padding: 0.8rem 1.5rem; border-radius: 50px; color: #fff; text-decoration: none; font-size: 0.95rem; transition: all 0.3s; }
-  .contact-pill:hover { background: rgba(255,255,255,0.15); transform: translateY(-2px); }
-  .footer-note { margin-top: 3rem; font-size: 0.8rem; opacity: 0.5; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  .reveal { opacity:0; transform:translateY(30px); transition:all 0.7s cubic-bezier(0.22,1,0.36,1); }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  .tab-content { display:none; }
+  .tab-content.active { display:grid; }
 
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  .tab-content { display: none; }
-  .tab-content.active { display: grid; }
+  .mobile-nav { display:none; position:fixed; bottom:0; left:0; right:0; z-index:200; background:rgba(255,251,245,0.95); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); border-top:1px solid rgba(0,0,0,0.08); padding:0.4rem 0.5rem env(safe-area-inset-bottom,0.6rem); box-shadow:0 -2px 20px rgba(0,0,0,0.06); }
+  .mobile-nav-inner { display:flex; justify-content:space-around; max-width:500px; margin:0 auto; }
+  .mobile-nav a { display:flex; flex-direction:column; align-items:center; gap:0.15rem; text-decoration:none; color:var(--stone); font-size:0.6rem; font-weight:500; padding:0.2rem 0.4rem; border-radius:8px; transition:color 0.2s; -webkit-tap-highlight-color:transparent; min-width:48px; }
+  .mobile-nav a .mn-icon { font-size:1.2rem; }
+  .mobile-nav a.active { color:var(--terracotta); }
 
-  @media (max-width: 640px) {
-    .section { padding: 3rem 1.2rem; }
-    .step { flex-direction: column; gap: 1rem; padding: 1.5rem; }
-    .rules-grid, .places-grid { grid-template-columns: 1fr; }
-    .guidebook-cta { padding: 2rem 1.5rem; }
-    .side-nav { display: none; }
-    .contact-row { flex-direction: column; align-items: center; }
-    .photo-step-body { flex-direction: column; gap: 0.8rem; }
+  @media(max-width:768px){
+    body{font-size:15px;padding-bottom:70px}
+    .hero{min-height:85vh;padding:2rem 1.5rem}
+    .hero h1{font-size:2.2rem}
+    .hero>div>p{font-size:1rem}
+    .hero-cta{padding:0.85rem 1.5rem;font-size:0.9rem;width:100%;justify-content:center}
+    .lang-toggle{top:0.8rem;right:0.8rem}
+    .lang-toggle button{padding:0.4rem 0.7rem;font-size:0.72rem}
+    .section{padding:2.5rem 1.2rem}
+    .section h2{font-size:1.7rem;margin-bottom:1rem}
+    .section>p,.section-intro{font-size:0.95rem}
+    .steps{gap:1rem}
+    .step{flex-direction:column;gap:0.8rem;padding:1.2rem;border-radius:16px}
+    .step-number{width:40px;height:40px;font-size:1.1rem}
+    .step-content h3{font-size:1.05rem}
+    .step-content p{font-size:0.88rem}
+    .tip{padding:0.5rem 0.8rem;font-size:0.82rem;border-radius:8px}
+    .map-link{display:flex;background:var(--light-olive);padding:0.6rem 1rem;border-radius:10px;font-size:0.82rem;margin-top:0.5rem}
+    .rules-grid{grid-template-columns:1fr;gap:0.8rem}
+    .rule-card{padding:1.2rem;border-radius:12px}
+    .rule-icon{width:40px;height:40px;font-size:1.2rem;border-radius:10px}
+    .guide-tabs{gap:0.4rem;overflow-x:auto;-webkit-overflow-scrolling:touch;flex-wrap:nowrap;padding-bottom:0.5rem;scrollbar-width:none}
+    .guide-tabs::-webkit-scrollbar{display:none}
+    .guide-tab{padding:0.5rem 1rem;font-size:0.8rem;white-space:nowrap;flex-shrink:0}
+    .places-grid{grid-template-columns:1fr;gap:0.8rem}
+    .place-card{padding:1.2rem;border-radius:14px}
+    .place-card h4{font-size:0.95rem}
+    .place-desc{font-size:0.82rem}
+    .place-address{font-size:0.75rem}
+    .place-links a{font-size:0.78rem}
+    .guidebook-cta{padding:2rem 1.2rem;border-radius:18px}
+    .guidebook-cta h3{font-size:1.4rem}
+    .guidebook-cta p{font-size:0.9rem}
+    .guidebook-btn{padding:0.85rem 2rem;font-size:0.9rem;width:100%;justify-content:center}
+    .info-banner{padding:1rem 1.2rem;border-radius:12px;flex-direction:column;gap:0.5rem}
+    .info-banner p{font-size:0.85rem}
+    .divider{margin:0.5rem auto}
+    .footer{padding:3rem 1.5rem 5rem}
+    .footer h3{font-size:1.3rem}
+    .footer p{font-size:0.9rem}
+    .contact-row{flex-direction:column;align-items:stretch;gap:0.8rem}
+    .contact-pill{justify-content:center;padding:0.9rem 1.2rem;font-size:0.9rem}
+    .side-nav{display:none}
+    .hero-badge{font-size:0.7rem;padding:0.3rem 1rem}
+    .mobile-nav{display:block}
+  }
+  @media(max-width:380px){
+    body{font-size:14px}
+    .hero{min-height:75vh;padding:1.5rem 1rem}
+    .hero h1{font-size:1.8rem}
+    .section{padding:2rem 1rem}
+    .section h2{font-size:1.5rem}
+    .step{padding:1rem}
+    .guidebook-cta{padding:1.5rem 1rem}
   }
 </style>
 </head>
 <body>
 
+<div class="lang-toggle">
+  <button class="active" onclick="setLang('sq')">🇦🇱 SQ</button>
+  <button onclick="setLang('en')">🇬🇧 EN</button>
+</div>
+
 <nav class="side-nav">
-  <a href="#hero"><span class="nav-label">Home</span></a>
-  <a href="#airport"><span class="nav-label">From Airport</span></a>
-  <a href="#finding"><span class="nav-label">Find Apartment</span></a>
+  <a href="#hero"><span class="nav-label" data-lang-sq>Kryefaqja</span><span class="nav-label" data-lang-en>Home</span></a>
+  <a href="#airport"><span class="nav-label" data-lang-sq>Aeroporti</span><span class="nav-label" data-lang-en>Airport</span></a>
   <a href="#checkin"><span class="nav-label">Check-in</span></a>
-  <a href="#rules"><span class="nav-label">House Rules</span></a>
-  <a href="#guidebook"><span class="nav-label">Explore Tirana</span></a>
-  <a href="#return"><span class="nav-label">Return to Airport</span></a>
-  <a href="#contact"><span class="nav-label">Contact</span></a>
+  <a href="#rules"><span class="nav-label" data-lang-sq>Rregullat</span><span class="nav-label" data-lang-en>Rules</span></a>
+  <a href="#guidebook"><span class="nav-label" data-lang-sq>Guida</span><span class="nav-label" data-lang-en>Guide</span></a>
+  <a href="#return"><span class="nav-label" data-lang-sq>Kthimi</span><span class="nav-label" data-lang-en>Return</span></a>
+  <a href="#contact"><span class="nav-label" data-lang-sq>Kontakt</span><span class="nav-label" data-lang-en>Contact</span></a>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="hero">
-  <div class="hero-bg"><img src="hero.jpg" alt="View from the apartment"></div>
-  <div class="hero-overlay"></div>
   <div class="hero-content">
-    <span class="hero-badge">Guest Guide</span>
-    <h1>Welcome to <em>Tirana</em></h1>
-    <p>Our apartment is in the heart of the city, right next to the New Bazaar (Pazari i Ri). Everything you need — from the airport to your return flight.</p>
-    <a href="#airport" class="hero-cta">Start the Guide ↓</a>
+    <span class="hero-badge" data-lang-sq>Guidë për Mysafirët</span><span class="hero-badge" data-lang-en>Guest Guide</span>
+    <h1 data-lang-sq>Mirë se vini në <em>Tiranë</em></h1><h1 data-lang-en>Welcome to <em>Tirana</em></h1>
+    <p data-lang-sq>Apartamenti ynë ndodhet në zemër të qytetit, pranë Pazarit të Ri. Gjithçka që ju nevojitet — nga aeroporti deri te kthimi.</p>
+    <p data-lang-en>Our apartment is in the heart of the city, near the New Bazaar. Everything you need — from the airport to your return trip.</p>
+    <a href="#airport" class="hero-cta"><span data-lang-sq>Fillo Guidën ↓</span><span data-lang-en>Start the Guide ↓</span></a>
   </div>
 </section>
 
-<!-- AIRPORT -->
-<section class="section" id="airport">
-  <div class="reveal">
-    <span class="section-label">Step 1</span>
-    <h2>From the Airport to Tirana</h2>
-    <p class="section-intro">Tirana International Airport "Mother Teresa" (TIA) is about 17 km from our apartment. The drive takes 25–40 minutes depending on traffic.</p>
-    <div class="steps">
-      <div class="step">
-        <div class="step-number">1</div>
-        <div class="step-content">
-          <h3>Collect Luggage & Exit the Terminal</h3>
-          <p>After passport control, pick up your bags and head to the main arrivals exit. Turn left for car rental desks, or go straight for taxis and the bus.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <div class="step-content">
-          <h3>Option A — Private Taxi</h3>
-          <p>Taxis are right outside arrivals. Fare to city centre: <strong>2,500–3,500 ALL (~€22–30)</strong>. ~25–35 min.</p>
-          <a href="https://maps.app.goo.gl/Pn5cBdrLnwhaUVmv9" target="_blank" class="map-link">📍 Taxi stand on Maps →</a>
-          <div class="tip"><span class="tip-icon">📱</span><span><strong>Taxi apps:</strong> Download "Speed Taxi" or "Merr Taxi" for fixed-price rides. Safer and transparent.</span></div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <div class="step-content">
-          <h3>Option B — Car Rental</h3>
-          <p>Several companies at the airport, from <strong>€10–20/day</strong>.</p>
-          <div class="tip"><span class="tip-icon">🚗</span><span><strong>Auto Rental Albania "ARA"</strong> — Near the terminal. Wide range, fast service.</span></div>
-          <a href="https://maps.app.goo.gl/LJny4Qrxn3okoAYU7" target="_blank" class="map-link">📍 ARA on Maps →</a>
-          <div class="tip" style="margin-top:0.5rem"><span class="tip-icon">🚐</span><span><strong>Minivans Rental Albania®</strong> — Vans & cars for groups/families.</span></div>
-          <a href="https://maps.app.goo.gl/4FFpM2D6nyfuZM9bA" target="_blank" class="map-link">📍 Minivans on Maps →</a>
-          <div class="tip" style="margin-top:0.5rem"><span class="tip-icon">🏢</span><span><strong>Others:</strong> Rinas Car Rental, Karruka (4.9★, 1000+ reviews), Hertz, Avis, Budget, Sixt — desks in arrivals hall on the left.</span></div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-number">4</div>
-        <div class="step-content">
-          <h3>Option C — Airport Bus (Budget)</h3>
-          <p>Departs <strong>every hour</strong> to <strong>Tirana Central Station</strong>. Fare: <strong>~400 ALL (~€3.50)</strong>.</p>
-          <a href="https://maps.app.goo.gl/vFvBGNtE2so5M4wQ7" target="_blank" class="map-link">📍 Airport Bus Stop →</a>
-          <div class="tip"><span class="tip-icon">🏁</span><span>From Central Station, apartment is ~15 min taxi or 25 min walk.</span></div>
-          <a href="https://maps.app.goo.gl/kTAYupSU9u2ub8sq7" target="_blank" class="map-link">📍 Tirana Central Station →</a>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-number">5</div>
-        <div class="step-content">
-          <h3>Option D — Private Transfer</h3>
-          <p>We can arrange a pickup (~€25–35). Message us on Airbnb in advance.</p>
-        </div>
-      </div>
-    </div>
+<!-- ═══ AIRPORT ═══ -->
+<section class="section" id="airport"><div class="reveal">
+  <span class="section-label"><span data-lang-sq>Hapi 1</span><span data-lang-en>Step 1</span></span>
+  <h2 data-lang-sq>Nga Aeroporti në Shtëpi</h2><h2 data-lang-en>From the Airport to Home</h2>
+  <p class="section-intro" data-lang-sq>Aeroporti Ndërkombëtar i Tiranës "Nënë Tereza" (TIA) ndodhet rreth 17 km nga apartamenti ynë në Pazarin e Ri. Rruga zgjat 25-40 minuta sipas trafikut.</p>
+  <p class="section-intro" data-lang-en>Tirana International Airport "Mother Teresa" (TIA) is about 17 km from our apartment near the New Bazaar. The drive takes 25-40 minutes depending on traffic.</p>
+  <div class="steps">
+    <div class="step"><div class="step-number">1</div><div class="step-content">
+      <h3 data-lang-sq>Merrni bagazhin & dilni nga terminali</h3><h3 data-lang-en>Collect luggage & exit the terminal</h3>
+      <p data-lang-sq>Pas kontrollit të pasaportës, merrni bagazhin dhe dilni nga dera kryesore. Kthehuni majtas për makinat me qira, ose drejtohuni drejt daljes për taksi dhe autobus.</p>
+      <p data-lang-en>After passport control, collect your luggage and exit through the main door. Turn left for car rentals, or go straight for taxis and buses.</p>
+    </div></div>
+
+    <div class="step"><div class="step-number">2</div><div class="step-content">
+      <h3 data-lang-sq>Opsioni A — Taksi private</h3><h3 data-lang-en>Option A — Private taxi</h3>
+      <p data-lang-sq>Taksitë private ndodhen përballë terminalit të mbërritjeve. Çmimi: <strong>2,500–3,500 ALL (~€22–30)</strong>. Kohëzgjatja: 25-35 min.</p>
+      <p data-lang-en>Private taxis are right outside arrivals. Fare: <strong>2,500–3,500 ALL (~€22–30)</strong>. Duration: 25-35 min.</p>
+      <div class="tip"><span class="tip-icon">📍</span><span data-lang-sq>Vendndodhja: përballë terminalit të mbërritjeve</span><span data-lang-en>Location: directly in front of the arrivals terminal</span></div>
+      <a href="https://maps.app.goo.gl/Pn5cBdrLnwhaUVmv9" target="_blank" class="map-link">📍 Google Maps →</a>
+      <div class="tip" style="margin-top:0.5rem"><span class="tip-icon">📱</span><span data-lang-sq><strong>Aplikacione:</strong> Shkarkoni "Speed Taxi" ose "Merr Taxi" për porosi me çmim fiks.</span><span data-lang-en><strong>Apps:</strong> Download "Speed Taxi" or "Merr Taxi" for fixed-price booking.</span></div>
+    </div></div>
+
+    <div class="step"><div class="step-number">3</div><div class="step-content">
+      <h3 data-lang-sq>Opsioni B — Makinë me qira</h3><h3 data-lang-en>Option B — Rental car</h3>
+      <p data-lang-sq>Çmimet fillojnë nga <strong>€10-20/ditë</strong>. Disa kompani direkt në aeroport:</p>
+      <p data-lang-en>Prices start from <strong>€10-20/day</strong>. Several companies at the airport:</p>
+      <div class="tip"><span class="tip-icon">🚗</span><span><strong>Auto Rental Albania "ARA"</strong></span></div>
+      <a href="https://maps.app.goo.gl/LJny4Qrxn3okoAYU7" target="_blank" class="map-link">📍 ARA Maps →</a>
+      <div class="tip" style="margin-top:0.5rem"><span class="tip-icon">🚐</span><span><strong>Minivans Rental Albania®</strong> — <span data-lang-sq>Ideale për grupe ose familje</span><span data-lang-en>Ideal for groups or families</span></span></div>
+      <a href="https://maps.app.goo.gl/4FFpM2D6nyfuZM9bA" target="_blank" class="map-link">📍 Minivans Maps →</a>
+      <div class="tip" style="margin-top:0.5rem"><span class="tip-icon">🏢</span><span data-lang-sq><strong>Të tjera:</strong> Rinas Car Rental, Karruka (4.9★), Hertz, Avis, Budget, Sixt — sportelet në sallën e mbërritjeve.</span><span data-lang-en><strong>Others:</strong> Rinas Car Rental, Karruka (4.9★), Hertz, Avis, Budget, Sixt — desks in the arrivals hall.</span></div>
+    </div></div>
+
+    <div class="step"><div class="step-number">4</div><div class="step-content">
+      <h3 data-lang-sq>Opsioni C — Autobusi (buxhetor)</h3><h3 data-lang-en>Option C — Bus (budget)</h3>
+      <p data-lang-sq>Niset <strong>çdo 1 orë</strong> drejt <strong>Stacionit Qendror</strong>. Çmimi: <strong>~400 ALL (~€3.50)</strong>.</p>
+      <p data-lang-en>Departs <strong>every hour</strong> to <strong>Tirana Central Station</strong>. Fare: <strong>~400 ALL (~€3.50)</strong>.</p>
+      <div class="tip"><span class="tip-icon">🚌</span><span data-lang-sq>Stacioni i autobusit: pranë parkingut të aeroportit</span><span data-lang-en>Bus stop: near the airport parking area</span></div>
+      <a href="https://maps.app.goo.gl/vFvBGNtE2so5M4wQ7" target="_blank" class="map-link"><span data-lang-sq>📍 Stacioni (Aeroport) →</span><span data-lang-en>📍 Bus Stop (Airport) →</span></a>
+      <div class="tip" style="margin-top:0.5rem"><span class="tip-icon">🏁</span><span data-lang-sq><strong>Stacioni Qendror:</strong> Apartamenti është ~15 min me taksi ose 25 min në këmbë.</span><span data-lang-en><strong>Central Station:</strong> The apartment is ~15 min by taxi or 25 min walk.</span></div>
+      <a href="https://maps.app.goo.gl/kTAYupSU9u2ub8sq7" target="_blank" class="map-link"><span data-lang-sq>📍 Stacioni Qendror →</span><span data-lang-en>📍 Central Station →</span></a>
+    </div></div>
+
+    <div class="step"><div class="step-number">5</div><div class="step-content">
+      <h3 data-lang-sq>Opsioni D — Transfer privat</h3><h3 data-lang-en>Option D — Private transfer</h3>
+      <p data-lang-sq>Organizojmë transfer privat (~€25-35). Na shkruani paraprakisht në Airbnb.</p>
+      <p data-lang-en>We can arrange a private transfer (~€25-35). Message us in advance on Airbnb.</p>
+    </div></div>
+
+    <div class="step"><div class="step-number">6</div><div class="step-content">
+      <h3 data-lang-sq>Mbërritja tek apartamenti</h3><h3 data-lang-en>Arriving at the apartment</h3>
+      <p data-lang-sq>Apartamenti ndodhet në <strong>Pazarin e Ri</strong>, qendër të Tiranës. Na njoftoni me mesazh kur arrini.</p>
+      <p data-lang-en>The apartment is in the <strong>New Bazaar</strong>, central Tirana. Message us when you arrive.</p>
+      <div class="tip"><span class="tip-icon">📍</span><span data-lang-sq>Adresa e saktë dërgohet në Airbnb chat para mbërritjes.</span><span data-lang-en>Exact address sent via Airbnb chat before arrival.</span></div>
+    </div></div>
   </div>
-</section>
+</div></section>
 
 <div class="divider"></div>
 
-<!-- FINDING THE APARTMENT -->
-<section class="section" id="finding">
-  <div class="reveal">
-    <span class="section-label">Step 2</span>
-    <h2>Finding the Apartment</h2>
-    <p class="section-intro">The building is on Rruga Tefta Tashko-Koço, next to Bar "Te Biblioteka" and City Public Library "Moikom Zeqo". Follow these photos step by step.</p>
-    <a href="https://maps.app.goo.gl/moo3uKLMjCXQJby9A" target="_blank" class="map-link" style="font-size:1rem;margin-bottom:1.5rem;display:inline-flex;">📍 Open GPS Location →</a>
-    <div class="warning-banner">
-      <span style="font-size:1.5rem;flex-shrink:0;">⚠️</span>
-      <p><strong>Construction detour:</strong> Due to ongoing works near the building, follow the route on the map below. <strong>If arriving by car, you must follow the red line</strong> — Google Maps does not show the correct route in this area.</p>
-    </div>
-
-    <div class="photo-step">
-      <img src="step1-map.jpg" alt="Satellite map with red route to the apartment">
-      <div class="photo-step-body">
-        <div class="photo-step-num">1</div>
-        <div class="photo-step-text">
-          <h4>Follow the Red Line on the Map</h4>
-          <p>This satellite view shows the correct route. The destination pin is at Bar "Te Biblioteka" — that's our building.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="photo-step">
-      <img src="step2-building.jpg" alt="Building exterior with apartment circled">
-      <div class="photo-step-body">
-        <div class="photo-step-num">2</div>
-        <div class="photo-step-text">
-          <h4>The Taxi Should Drop You Here</h4>
-          <p>Ground floor has City Public Library "Moikom Zeqo" and coffee bar "Te Biblioteka". The red circle shows the apartment (3rd floor). Go behind the bar and up the stairs.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="photo-step">
-      <img src="step3-path.jpg" alt="Path behind the building">
-      <div class="photo-step-body">
-        <div class="photo-step-num">3</div>
-        <div class="photo-step-text">
-          <h4>Follow the Path Behind the Building</h4>
-          <p>Walk around to the back of the building following the red line. The stairs are located behind the building.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="photo-step">
-      <img src="step4-stairs.jpg" alt="Outdoor stairs to building entrance">
-      <div class="photo-step-body">
-        <div class="photo-step-num">4</div>
-        <div class="photo-step-text">
-          <h4>Go Up the Stairs</h4>
-          <p>You'll see outdoor stairs with an orange handrail. Walk up to reach the building entrance. The apartment is on the 3rd floor.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="photo-step">
-      <img src="step5-door.jpg" alt="Apartment door with lockbox circled">
-      <div class="photo-step-body">
-        <div class="photo-step-num">5</div>
-        <div class="photo-step-text">
-          <h4>Open the Lockbox & Enter</h4>
-          <p>On the 3rd floor, open the lockbox (circled in red) with the code we'll send you, take the keys, and open the main door. You're home!</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="info-banner">
-      <span class="banner-icon">🅿️</span>
-      <p><strong>Parking:</strong> The apartment doesn't include private parking. There's a paid parking lot right next to the building in the adjacent property.</p>
-    </div>
+<!-- ═══ CHECK-IN ═══ -->
+<section class="section" id="checkin"><div class="reveal">
+  <span class="section-label"><span data-lang-sq>Hapi 2</span><span data-lang-en>Step 2</span></span>
+  <h2 data-lang-sq>Check-in & Orientimi</h2><h2 data-lang-en>Check-in & Orientation</h2>
+  <div class="steps">
+    <div class="step"><div class="step-number">🔑</div><div class="step-content">
+      <h3>Check-in / Check-out</h3>
+      <p data-lang-sq><strong>Check-in:</strong> Nga ora 15:00 e tutje<br><strong>Check-out:</strong> Deri në orën 11:00<br>Për orar fleksibël, na kontaktoni sa më parë!</p>
+      <p data-lang-en><strong>Check-in:</strong> From 3:00 PM onwards<br><strong>Check-out:</strong> By 11:00 AM<br>For flexible timing, contact us as early as possible!</p>
+    </div></div>
+    <div class="step"><div class="step-number">📶</div><div class="step-content">
+      <h3>WiFi</h3>
+      <p data-lang-sq>Rrjeti dhe fjalëkalimi janë në kartonin pranë televizorit.</p>
+      <p data-lang-en>Network name and password are on the card next to the TV.</p>
+    </div></div>
+    <div class="step"><div class="step-number">🌡️</div><div class="step-content">
+      <h3 data-lang-sq>Kondicioneri</h3><h3 data-lang-en>AC & Heating</h3>
+      <p data-lang-sq>Ka telekomandë. Fikeni kur dilni nga apartamenti.</p>
+      <p data-lang-en>Has a remote control. Please turn it off when you leave.</p>
+    </div></div>
+    <div class="step"><div class="step-number">🛒</div><div class="step-content">
+      <h3 data-lang-sq>Supermarket</h3><h3 data-lang-en>Supermarket</h3>
+      <p data-lang-sq><strong>Spar</strong> ndodhet vetëm 30m larg — hapur çdo ditë 07:00–22:00.</p>
+      <p data-lang-en><strong>Spar</strong> is just 30m away — open daily 07:00–22:00.</p>
+    </div></div>
   </div>
-</section>
+</div></section>
 
 <div class="divider"></div>
 
-<!-- CHECK-IN -->
-<section class="section" id="checkin">
-  <div class="reveal">
-    <span class="section-label">Step 3</span>
-    <h2>Check-in & Getting Settled</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-number">🔑</div>
-        <div class="step-content">
-          <h3>Check-in / Check-out Times</h3>
-          <p><strong>Check-in:</strong> From 11:00 AM<br><strong>Check-out:</strong> By 11:00 AM<br><br>Please let us know if you leave before 11:00 AM so we can arrange cleaning. Need flexibility? Contact us early — we'll do our best!</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-number">📶</div>
-        <div class="step-content"><h3>WiFi</h3><p>Network name and password are on the card near the TV.</p></div>
-      </div>
-      <div class="step">
-        <div class="step-number">🌡️</div>
-        <div class="step-content"><h3>Air Conditioning</h3><p>AC has a remote control. Please turn it off when you leave.</p></div>
-      </div>
-      <div class="step">
-        <div class="step-number">🛒</div>
-        <div class="step-content"><h3>Nearest Supermarket</h3><p><strong>Spar</strong> is just 30m from the apartment — open daily 7 AM – 10 PM.</p></div>
-      </div>
-    </div>
+<!-- ═══ RULES ═══ -->
+<section class="section" id="rules"><div class="reveal">
+  <span class="section-label"><span data-lang-sq>Rregullat</span><span data-lang-en>Rules</span></span>
+  <h2 data-lang-sq>Rregullat e Shtëpisë</h2><h2 data-lang-en>House Rules</h2>
+  <p class="section-intro" data-lang-sq>Për një qëndrim të këndshëm, ju lutemi respektoni:</p>
+  <p class="section-intro" data-lang-en>For a pleasant stay, please respect:</p>
+  <div class="rules-grid">
+    <div class="rule-card"><div class="rule-icon red">🚭</div><div><h4 data-lang-sq>Ndalohet duhani</h4><h4 data-lang-en>No smoking</h4><p data-lang-sq>Ndalohet brenda. Mund të pini në ballkon.</p><p data-lang-en>Not allowed indoors. Balcony or outside only.</p></div></div>
+    <div class="rule-card"><div class="rule-icon blue">🔇</div><div><h4 data-lang-sq>Qetësi pas 22:00</h4><h4 data-lang-en>Quiet after 10 PM</h4><p data-lang-sq>Mbani zhurmat në minimum nga respekti për fqinjët.</p><p data-lang-en>Keep noise to a minimum out of respect for neighbors.</p></div></div>
+    <div class="rule-card"><div class="rule-icon red">🎉</div><div><h4 data-lang-sq>Nuk lejohen festa</h4><h4 data-lang-en>No parties</h4><p data-lang-sq>Apartamenti nuk lejon festa ose tubime të mëdha.</p><p data-lang-en>No parties or large gatherings allowed.</p></div></div>
+    <div class="rule-card"><div class="rule-icon green">🧹</div><div><h4 data-lang-sq>Pastërtia</h4><h4 data-lang-en>Cleanliness</h4><p data-lang-sq>Lani enët. Plehrat te konteineri jashtë.</p><p data-lang-en>Wash dishes. Trash goes in the bin outside.</p></div></div>
+    <div class="rule-card"><div class="rule-icon yellow">🔑</div><div><h4 data-lang-sq>Çelësat</h4><h4 data-lang-en>Keys</h4><p data-lang-sq>Mbyllni derën kur dilni. Mos humbni çelësat.</p><p data-lang-en>Lock the door when leaving. Don't lose the keys.</p></div></div>
+    <div class="rule-card"><div class="rule-icon purple">🐾</div><div><h4 data-lang-sq>Kafshët</h4><h4 data-lang-en>Pets</h4><p data-lang-sq>Na kontaktoni para se të sillni kafshë.</p><p data-lang-en>Contact us before bringing pets.</p></div></div>
+    <div class="rule-card"><div class="rule-icon blue">💧</div><div><h4 data-lang-sq>Energjia</h4><h4 data-lang-en>Energy</h4><p data-lang-sq>Fikni dritat dhe ujin kur nuk përdoren.</p><p data-lang-en>Turn off lights and water when not in use.</p></div></div>
+    <div class="rule-card"><div class="rule-icon yellow">👥</div><div><h4 data-lang-sq>Mysafirët</h4><h4 data-lang-en>Guests</h4><p data-lang-sq>Vetëm numri i regjistruar në Airbnb lejohet.</p><p data-lang-en>Only Airbnb-registered guests allowed to stay.</p></div></div>
   </div>
-</section>
+</div></section>
 
 <div class="divider"></div>
 
-<!-- RULES -->
-<section class="section" id="rules">
-  <div class="reveal">
-    <span class="section-label">Rules</span>
-    <h2>House Rules</h2>
-    <p class="section-intro">For a pleasant stay for everyone, please follow these guidelines:</p>
-    <div class="rules-grid">
-      <div class="rule-card"><div class="rule-icon red">🚭</div><div><h4>No Smoking Inside</h4><p>Smoke on the balcony or outside only.</p></div></div>
-      <div class="rule-card"><div class="rule-icon blue">🔇</div><div><h4>Quiet After 10 PM</h4><p>Keep noise to a minimum out of respect for neighbours.</p></div></div>
-      <div class="rule-card"><div class="rule-icon red">🎉</div><div><h4>No Parties</h4><p>Not suitable for parties or large gatherings.</p></div></div>
-      <div class="rule-card"><div class="rule-icon green">🧹</div><div><h4>Keep It Tidy</h4><p>Wash dishes after use. Take rubbish to the bin outside.</p></div></div>
-      <div class="rule-card"><div class="rule-icon yellow">🔑</div><div><h4>Keys & Security</h4><p>Lock the door every time you leave. Lost keys incur a replacement cost.</p></div></div>
-      <div class="rule-card"><div class="rule-icon purple">🐾</div><div><h4>Pets</h4><p>Contact us before bringing pets — specific rules apply.</p></div></div>
-      <div class="rule-card"><div class="rule-icon blue">💧</div><div><h4>Save Energy</h4><p>Turn off lights, AC, and taps when not in use.</p></div></div>
-      <div class="rule-card"><div class="rule-icon yellow">👥</div><div><h4>Guest Count</h4><p>Only registered Airbnb guests may stay. Extra visitors need approval.</p></div></div>
-      <div class="rule-card"><div class="rule-icon green">🫧</div><div><h4>Dryer Care</h4><p>Empty the water container after each use and clean the filters inside the door.</p></div></div>
-    </div>
+<!-- ═══ GUIDEBOOK ═══ -->
+<section class="section" id="guidebook"><div class="reveal">
+  <span class="section-label"><span data-lang-sq>Zbuloni</span><span data-lang-en>Explore</span></span>
+  <h2 data-lang-sq>Guida e Tiranës</h2><h2 data-lang-en>Tirana Guide</h2>
+  <p class="section-intro" data-lang-sq>Vendet më të mira rreth Pazarit të Ri.</p>
+  <p class="section-intro" data-lang-en>The best places around the New Bazaar area.</p>
+
+  <div class="guide-tabs">
+    <div class="guide-tab active" data-tab="food"><span data-lang-sq>🍽️ Ku të hani</span><span data-lang-en>🍽️ Where to eat</span></div>
+    <div class="guide-tab" data-tab="sights"><span data-lang-sq>🏛️ Vizitoni</span><span data-lang-en>🏛️ Sightseeing</span></div>
+    <div class="guide-tab" data-tab="hood"><span data-lang-sq>🏘️ Lagjet</span><span data-lang-en>🏘️ Neighbourhood</span></div>
+    <div class="guide-tab" data-tab="night"><span data-lang-sq>🌙 Jeta e natës</span><span data-lang-en>🌙 Nightlife</span></div>
   </div>
-</section>
+
+  <!-- FOOD -->
+  <div class="tab-content places-grid active" id="tab-food">
+    <div class="place-card"><div class="place-card-header"><h4>Mulliri i Vjetër</h4><span class="place-tag tag-food" data-lang-sq>Kafe</span><span class="place-tag tag-food" data-lang-en>Coffee</span></div><div class="place-rating">★ 4.4</div><p class="place-desc" data-lang-sq>Kafe e shkëlqyer dhe ëmbëlsira. Brenda Pazarit të Ri.</p><p class="place-desc" data-lang-en>Excellent coffee and desserts. Inside the New Bazaar.</p><p class="place-address">Pazari i Ri, Tiranë</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJg2ctMxExUBMRsUKOUmESF34" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4>Stephen Center</h4><span class="place-tag tag-food" data-lang-sq>Mëngjes</span><span class="place-tag tag-food" data-lang-en>Breakfast</span></div><div class="place-rating">★ 4.4</div><p class="place-desc" data-lang-sq>Mëngjes i mrekullueshëm. Burgera, sallata, brunch amerikan.</p><p class="place-desc" data-lang-en>Great breakfast spot. Burgers, salads, American brunch.</p><p class="place-address">Rr. Hoxha Tahsim 1</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJ98V0CHcxUBMRYh9li_QXRiY" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4>Mullixhiu</h4><span class="place-tag tag-food">Fine Dining</span></div><div class="place-rating">★ 4.1</div><p class="place-desc" data-lang-sq>Kuzhinë tradicionale me qasje bashkëkohore. Menuja e degustimit është e jashtëzakonshme.</p><p class="place-desc" data-lang-en>Traditional cuisine with a modern twist. The tasting menu is extraordinary.</p><p class="place-address">Shëtitorja Lasgush Poradeci</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJtU6qmvwwUBMRmQMszz1aCac" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4>Ceren Ismet Shehu</h4><span class="place-tag tag-food" data-lang-sq>Tradicionale</span><span class="place-tag tag-food" data-lang-en>Traditional</span></div><div class="place-rating">★ 4.8</div><p class="place-desc" data-lang-sq>Set menu me shumë pjata. Provoni verën e shtëpisë. Brenda Kalasë.</p><p class="place-desc" data-lang-en>Set menu with many dishes. Try the homemade wine. Inside Tirana Castle.</p><p class="place-address">Kalaja e Tiranës</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJwQVt2ssxUBMRVGlAWC4YuI0" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4>Era Vila</h4><span class="place-tag tag-food" data-lang-sq>Tradicionale</span><span class="place-tag tag-food" data-lang-en>Traditional</span></div><div class="place-rating">★ 4.5</div><p class="place-desc" data-lang-sq>I dashur nga vendësit dhe turistët. Provoni djathin e pjekur.</p><p class="place-desc" data-lang-en>Loved by locals and tourists alike. Try the baked cheese.</p><p class="place-address">Rruga Papa Gjon Pali II</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJFdFAMRwxUBMRnh0ncu02O2I" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4>Taiwan Center</h4><span class="place-tag tag-food" data-lang-sq>Ndërkombëtar</span><span class="place-tag tag-food" data-lang-en>International</span></div><div class="place-rating">★ 4.3</div><p class="place-desc" data-lang-sq>Pica, pasta, gamë e gjerë pjatash. Pranë fontanës në Parkun Rinia.</p><p class="place-desc" data-lang-en>Pizza, pasta, wide variety. Beautiful setting by the fountain in Rinia Park.</p><p class="place-address">Parku Rinia</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJsyJB2wQxUBMRiN4BrXxB5qw" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4>Era "Blloku"</h4><span class="place-tag tag-food" data-lang-sq>Piceri</span><span class="place-tag tag-food" data-lang-en>Pizzeria</span></div><div class="place-rating">★ 4.6</div><p class="place-desc" data-lang-sq>Kuzhinë tradicionale, pica, pasta. Shumë e frekuentuar në Bllok.</p><p class="place-desc" data-lang-en>Traditional cuisine, pizza, pasta. Very popular in Blloku area.</p><p class="place-address">Rruga Ismail Qemali (Blloku)</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJIxwHRAIxUBMRVC_DEyTXYgA" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4>Shije Fshati</h4><span class="place-tag tag-food" data-lang-sq>Tradicionale</span><span class="place-tag tag-food" data-lang-en>Traditional</span></div><div class="place-rating">★ 4.6</div><p class="place-desc" data-lang-sq>Shija e fshatit. Dekor rustik, pjata shtëpie, staf mikpritës.</p><p class="place-desc" data-lang-en>Taste of the village. Rustic decor, homestyle dishes, welcoming staff.</p><p class="place-address">Rruga e Dibrës 61</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJ3dVqLr8xUBMRZG0qf5_KYao" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4>Blùa Fish</h4><span class="place-tag tag-food" data-lang-sq>Peshk</span><span class="place-tag tag-food" data-lang-en>Seafood</span></div><div class="place-rating">★ 4.8</div><p class="place-desc" data-lang-sq>Rooftop me fruta deti. Pamje panoramike e Tiranës.</p><p class="place-desc" data-lang-en>Rooftop seafood. Panoramic views of Tirana and surrounding mountains.</p><p class="place-address">Rruga 4 Dëshmorët</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJq_MdVPkxUBMRYPzHBAGRhPo" target="_blank">📍 Maps</a></div></div>
+  </div>
+
+  <!-- SIGHTS -->
+  <div class="tab-content places-grid" id="tab-sights">
+    <div class="place-card"><div class="place-card-header"><h4>Dajti Ekspres</h4><span class="place-tag tag-sight" data-lang-sq>Teleferik</span><span class="place-tag tag-sight" data-lang-en>Cable Car</span></div><div class="place-rating">★ 4.3</div><p class="place-desc" data-lang-sq>Teleferiku më i gjatë në Ballkan. Panoramë, minigolf, restorant, park aventurash.</p><p class="place-desc" data-lang-en>Balkans' longest cable car. Panoramic views, mini-golf, restaurant, adventure park.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJ-0qSJQI0UBMRxurnvQkJw_E" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4>Bunk'Art 1</h4><span class="place-tag tag-sight" data-lang-sq>Muze</span><span class="place-tag tag-sight" data-lang-en>Museum</span></div><div class="place-rating">★ 4.6</div><p class="place-desc" data-lang-sq>Muze brenda bunkeri gjigand komunist. Përvojë unike.</p><p class="place-desc" data-lang-en>Museum inside a massive Cold War bunker. Unique experience.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJWefPqAE0UBMRe5lBduTNzf4" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4 data-lang-sq>Kalaja e Tiranës</h4><h4 data-lang-en>Tirana Castle</h4><span class="place-tag tag-sight" data-lang-sq>Histori</span><span class="place-tag tag-sight" data-lang-en>History</span></div><div class="place-rating">★ 4.4</div><p class="place-desc" data-lang-sq>Restorante, kafene, dyqane artizanale brenda mureve osmane.</p><p class="place-desc" data-lang-en>Restaurants, cafés, artisan shops within Ottoman walls.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJMbZaqRAxUBMRYG5EIVzBwqI" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4 data-lang-sq>Kopshti Zoologjik</h4><h4 data-lang-en>Tirana Zoo</h4><span class="place-tag tag-sight" data-lang-sq>Familje</span><span class="place-tag tag-sight" data-lang-en>Family</span></div><div class="place-rating">★ 3.6</div><p class="place-desc" data-lang-sq>Luanë, tigra, arinj. Hyrja: 300 ALL. Mbyllur të hënave.</p><p class="place-desc" data-lang-en>Lions, tigers, bears. Entry: 300 ALL. Closed Mondays.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJ7VjOb_cwUBMRHk2-rfCvazM" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4 data-lang-sq>Mozaiku i Tiranës</h4><h4 data-lang-en>Mosaic of Tirana</h4><span class="place-tag tag-sight" data-lang-sq>Arkeologji</span><span class="place-tag tag-sight" data-lang-en>Archaeology</span></div><div class="place-rating">★ 4.0</div><p class="place-desc" data-lang-sq>Sit arkeologjik romak me mozaikë. Vizitë e shkurtër.</p><p class="place-desc" data-lang-en>Roman archaeological site with mosaics. Short but interesting.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJd2vZeKgxUBMRDeq2MC6PbdI" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4 data-lang-sq>Kalaja e Petrelës</h4><h4 data-lang-en>Petrela Castle</h4><span class="place-tag tag-sight" data-lang-sq>Ekskursion</span><span class="place-tag tag-sight" data-lang-en>Day Trip</span></div><div class="place-rating">★ 4.5</div><p class="place-desc" data-lang-sq>Kala bizantine, shek. VI. Restorant në majë. ~30 min me makinë.</p><p class="place-desc" data-lang-en>6th century Byzantine castle. Restaurant at the top. ~30 min drive.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJqwF5WvQ5UBMRJEXxKOGvppQ" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4 data-lang-sq>Kalaja e Beratit</h4><h4 data-lang-en>Berat Castle</h4><span class="place-tag tag-sight">UNESCO</span></div><div class="place-rating">★ 4.5+</div><p class="place-desc" data-lang-sq>Qytet UNESCO. ~2 orë nga Tirana.</p><p class="place-desc" data-lang-en>UNESCO city with magnificent castle. ~2 hours from Tirana.</p><div class="place-links"><a href="https://www.google.com/maps/search/Berat+Castle+Albania" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4 data-lang-sq>Kalaja e Rozafës</h4><h4 data-lang-en>Rozafa Castle</h4><span class="place-tag tag-sight" data-lang-sq>Ekskursion</span><span class="place-tag tag-sight" data-lang-en>Day Trip</span></div><div class="place-rating">★ 4.5+</div><p class="place-desc" data-lang-sq>Kala ilire mbi liqenin e Shkodrës. ~2 orë nga Tirana.</p><p class="place-desc" data-lang-en>Ancient Illyrian castle overlooking Lake Shkodra. ~2 hours.</p><div class="place-links"><a href="https://www.google.com/maps/search/Rozafa+Castle+Shkoder" target="_blank">📍 Maps</a></div></div>
+  </div>
+
+  <!-- NEIGHBOURHOOD -->
+  <div class="tab-content places-grid" id="tab-hood">
+    <div class="place-card"><div class="place-card-header"><h4>Pazari i Ri</h4><span class="place-tag tag-hood">50m</span></div><div class="place-rating">★ 4.3</div><p class="place-desc" data-lang-sq>Tregu vetëm 50m larg. Fruta, perime, erëza, suveniret — atmosferë e gjallë.</p><p class="place-desc" data-lang-en>Market just 50m away. Fruits, veggies, spices, souvenirs — vibrant atmosphere.</p><p class="place-address">Rruga Shenasi Dishnica</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJL9bjfn8xUBMRqIpTE9lNqXA" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4>Spar</h4><span class="place-tag tag-hood">30m</span></div><div class="place-rating">★ 4.0</div><p class="place-desc" data-lang-sq>Supermarket 30m larg. Produkte të freskëta. 07:00–22:00.</p><p class="place-desc" data-lang-en>Supermarket 30m away. Fresh produce. 07:00–22:00.</p><p class="place-address">Rruga Tefta Tashko-Koço</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJ0bnN5xYxUBMRUurTDfdqzy4" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4 data-lang-sq>Kalaja e Tiranës</h4><h4 data-lang-en>Tirana Castle</h4><span class="place-tag tag-hood" data-lang-sq>5 min</span><span class="place-tag tag-hood" data-lang-en>5 min walk</span></div><div class="place-rating">★ 4.4</div><p class="place-desc" data-lang-sq>Fortesë me kafene, restorante, dyqane. Pranë Toptani.</p><p class="place-desc" data-lang-en>Fortress with cafés, restaurants, shops. Near Toptani Center.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJMbZaqRAxUBMRYG5EIVzBwqI" target="_blank">📍 Maps</a></div></div>
+  </div>
+
+  <!-- NIGHTLIFE -->
+  <div class="tab-content places-grid" id="tab-night">
+    <div class="place-card"><div class="place-card-header"><h4>Whisky Bar</h4><span class="place-tag tag-night">Club</span></div><div class="place-rating">★ 4.3</div><p class="place-desc" data-lang-sq>Kokteje të shkëlqyera, muzikë latino. ~20 min në këmbë.</p><p class="place-desc" data-lang-en>Excellent cocktails, Latin music. ~20 min walk.</p><p class="place-address">Rruga Ibrahim Rugova</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJnf1wOAMxUBMRZ7BUlyLNRvQ" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4>City Art</h4><span class="place-tag tag-night">Bar</span></div><div class="place-rating">★ 4.5</div><p class="place-desc" data-lang-sq>Dekor unik, atmosferë e mrekullueshme natën.</p><p class="place-desc" data-lang-en>Unique decor, wonderful evening atmosphere.</p><p class="place-address">Rruga Mustafa Matohiti</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJm2np7xsxUBMRAfR6CS0bG7o" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4>MUMA</h4><span class="place-tag tag-night">Bistro</span></div><div class="place-rating">★ 4.6</div><p class="place-desc" data-lang-sq>Perfekt për pasdite me miq. Pije kreative, finger food.</p><p class="place-desc" data-lang-en>Perfect for afternoon with friends. Creative drinks, finger food.</p><p class="place-address">Rruga Mustafa Matohiti 18</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJsU9Z7hsxUBMRAzX00wsm-HY" target="_blank">📍 Maps</a></div></div>
+    <div class="place-card"><div class="place-card-header"><h4>Libraria Bar</h4><span class="place-tag tag-night">Bar</span></div><div class="place-rating">★ 4.0</div><p class="place-desc" data-lang-sq>Atmosferë autentike, muzikë live të mërkurave. Mojitos & darts.</p><p class="place-desc" data-lang-en>Authentic atmosphere, live music Wednesdays. Mojitos & darts.</p><p class="place-address">Rruga Pjetër Bogdani (Blloku)</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJsVc6DDsxUBMRnc7DVTzM4k0" target="_blank">📍 Maps</a></div></div>
+  </div>
+
+  <div class="guidebook-cta">
+    <h3>📖 Airbnb Guidebook</h3>
+    <p data-lang-sq>Guidën e plotë me harta interaktive direkt në Airbnb.</p><p data-lang-en>Full guide with interactive maps on Airbnb.</p>
+    <a href="https://www.airbnb.com/l/zypnklRS" target="_blank" rel="noopener" class="guidebook-btn"><span data-lang-sq>Hap Guidën →</span><span data-lang-en>Open Guide →</span></a>
+  </div>
+  <div class="info-banner">
+    <span class="banner-icon">💡</span>
+    <p data-lang-sq>Guidën mund ta hapni edhe nga aplikacioni i Airbnb — shkoni te rezervimi dhe klikoni "Guidebook".</p>
+    <p data-lang-en>You can also open the guide from the Airbnb app — go to your reservation and tap "Guidebook".</p>
+  </div>
+</div></section>
 
 <div class="divider"></div>
 
-<!-- EXPLORE -->
-<section class="section" id="guidebook">
-  <div class="reveal">
-    <span class="section-label">Explore</span>
-    <h2>Discover Tirana</h2>
-    <p class="section-intro">The best places around our apartment — restaurants, sightseeing, the neighbourhood, and nightlife.</p>
-    <div class="guide-tabs">
-      <div class="guide-tab active" data-tab="food">🍽️ Where to Eat</div>
-      <div class="guide-tab" data-tab="sights">🏛️ Sightseeing</div>
-      <div class="guide-tab" data-tab="hood">🏘️ Neighbourhood</div>
-      <div class="guide-tab" data-tab="night">🌙 Nightlife</div>
-    </div>
-
-    <div class="tab-content places-grid active" id="tab-food">
-      <div class="place-card"><div class="place-card-header"><h4>Mulliri i Vjetër</h4><span class="place-tag tag-food">Coffee</span></div><div class="place-rating">★ 4.4</div><p class="place-desc">Delicious coffee and desserts, right inside Pazari i Ri market.</p><p class="place-address">Pazari i Ri, Tirana</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJg2ctMxExUBMRsUKOUmESF34" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Stephen Center</h4><span class="place-tag tag-food">Breakfast</span></div><div class="place-rating">★ 4.4</div><p class="place-desc">Great breakfast spot — burgers, salads, American-style brunch. Very close by.</p><p class="place-address">Rr. Hoxha Tahsim 1</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJ98V0CHcxUBMRYh9li_QXRiY" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Mullixhiu</h4><span class="place-tag tag-food">Fine Dining</span></div><div class="place-rating">★ 4.1</div><p class="place-desc">Albania's most acclaimed restaurant. Traditional cuisine, modern twist. The tasting menu is extraordinary.</p><p class="place-address">Near Artificial Lake</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJtU6qmvwwUBMRmQMszz1aCac" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Ceren Ismet Shehu</h4><span class="place-tag tag-food">Traditional</span></div><div class="place-rating">★ 4.8 · 8,406 reviews</div><p class="place-desc">Special traditional cuisine inside Tirana Castle. Set menu with many dishes — try the homemade wine!</p><p class="place-address">Tirana Castle</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJwQVt2ssxUBMRVGlAWC4YuI0" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Era Vila</h4><span class="place-tag tag-food">Traditional</span></div><div class="place-rating">★ 4.5</div><p class="place-desc">Loved by locals and tourists. Try the baked cheese and muhamara!</p><p class="place-address">Rruga Papa Gjon Pali II</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJFdFAMRwxUBMRnh0ncu02O2I" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Taiwan Center</h4><span class="place-tag tag-food">International</span></div><div class="place-rating">★ 4.3</div><p class="place-desc">Pizza, pasta, many dishes. Beautiful fountain setting in Rinia Park.</p><p class="place-address">Rinia Park</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJsyJB2wQxUBMRiN4BrXxB5qw" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Era "Blloku"</h4><span class="place-tag tag-food">Pizzeria</span></div><div class="place-rating">★ 4.6</div><p class="place-desc">Traditional food, pizza, pasta. Try the roast lamb! Most popular in Blloku.</p><p class="place-address">Rruga Ismail Qemali (Blloku)</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJIxwHRAIxUBMRVC_DEyTXYgA" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Shije Fshati</h4><span class="place-tag tag-food">Traditional</span></div><div class="place-rating">★ 4.6</div><p class="place-desc">Taste of the Village — rustic décor, homestyle cooking, welcoming staff.</p><p class="place-address">Rruga e Dibrës 61</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJ3dVqLr8xUBMRZG0qf5_KYao" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Blùa Fish</h4><span class="place-tag tag-food">Seafood</span></div><div class="place-rating">★ 4.8</div><p class="place-desc">Rooftop seafood gem. Panoramic views of Tirana and mountains.</p><p class="place-address">Rruga 4 Dëshmorët</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJq_MdVPkxUBMRYPzHBAGRhPo" target="_blank">📍 Map</a></div></div>
-    </div>
-
-    <div class="tab-content places-grid" id="tab-sights">
-      <div class="place-card"><div class="place-card-header"><h4>Dajti Ekspres</h4><span class="place-tag tag-sight">Cable Car</span></div><div class="place-rating">★ 4.3</div><p class="place-desc">Longest cable car in the Balkans. Panoramic views, mini golf, adventure park.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJ-0qSJQI0UBMRxurnvQkJw_E" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Bunk'Art 1</h4><span class="place-tag tag-sight">Museum</span></div><div class="place-rating">★ 4.6</div><p class="place-desc">Museum inside a massive Cold War bunker. Powerful historical experience.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJWefPqAE0UBMRe5lBduTNzf4" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Tirana Castle</h4><span class="place-tag tag-sight">History</span></div><div class="place-rating">★ 4.4</div><p class="place-desc">Ottoman fortress with cafés, shops, and cultural spaces.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJMbZaqRAxUBMRYG5EIVzBwqI" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Tirana Zoo</h4><span class="place-tag tag-sight">Family</span></div><div class="place-rating">★ 3.6</div><p class="place-desc">Lions, tigers, bears. Entry: 300 ALL. Closed Mondays.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJ7VjOb_cwUBMRHk2-rfCvazM" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Mosaic of Tirana</h4><span class="place-tag tag-sight">Archaeology</span></div><div class="place-rating">★ 4.0</div><p class="place-desc">Ancient Roman mosaics. Short but interesting (~20 min).</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJd2vZeKgxUBMRDeq2MC6PbdI" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Petrela Castle</h4><span class="place-tag tag-sight">Day Trip</span></div><div class="place-rating">★ 4.5</div><p class="place-desc">6th-century Byzantine castle. Restaurant at the top! ~30 min drive.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJqwF5WvQ5UBMRJEXxKOGvppQ" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Berat Castle</h4><span class="place-tag tag-sight">Day Trip</span></div><div class="place-rating">★ 4.5+</div><p class="place-desc">UNESCO heritage. Stunning castle. ~2h from Tirana.</p><div class="place-links"><a href="https://www.google.com/maps/search/Berat+Castle+Albania" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Rozafa Castle</h4><span class="place-tag tag-sight">Day Trip</span></div><div class="place-rating">★ 4.5+</div><p class="place-desc">Illyrian castle over Lake Shkodra. ~2h from Tirana.</p><div class="place-links"><a href="https://www.google.com/maps/search/Rozafa+Castle+Shkoder" target="_blank">📍 Map</a></div></div>
-    </div>
-
-    <div class="tab-content places-grid" id="tab-hood">
-      <div class="place-card"><div class="place-card-header"><h4>Pazari i Ri</h4><span class="place-tag tag-hood">50m</span></div><div class="place-rating">★ 4.3</div><p class="place-desc">New Bazaar — 50m away. Fresh produce, spices, souvenirs. Iconic red & white buildings.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJL9bjfn8xUBMRqIpTE9lNqXA" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Spar</h4><span class="place-tag tag-hood">30m</span></div><div class="place-rating">★ 4.0</div><p class="place-desc">Supermarket 30m away. Fresh produce, essentials. 7 AM – 10 PM daily.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJ0bnN5xYxUBMRUurTDfdqzy4" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Tirana Castle</h4><span class="place-tag tag-hood">5 min</span></div><div class="place-rating">★ 4.4</div><p class="place-desc">Ottoman fortress with cafés, artisan shops. Next to Toptani Shopping Centre.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJMbZaqRAxUBMRYG5EIVzBwqI" target="_blank">📍 Map</a></div></div>
-    </div>
-
-    <div class="tab-content places-grid" id="tab-night">
-      <div class="place-card"><div class="place-card-header"><h4>Whisky Bar</h4><span class="place-tag tag-night">Club</span></div><div class="place-rating">★ 4.3</div><p class="place-desc">Best cocktails, latino nights, warm atmosphere. 20 min walk.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJnf1wOAMxUBMRZ7BUlyLNRvQ" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>City Art</h4><span class="place-tag tag-night">Bar</span></div><div class="place-rating">★ 4.5</div><p class="place-desc">Unique décor, great night vibe. Reserve on weekends.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJm2np7xsxUBMRAfR6CS0bG7o" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>MUMA</h4><span class="place-tag tag-night">Bistro</span></div><div class="place-rating">★ 4.6</div><p class="place-desc">Beautiful interior, creative drinks, finger food. Perfect for a relaxed afternoon.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJsU9Z7hsxUBMRAzX00wsm-HY" target="_blank">📍 Map</a></div></div>
-      <div class="place-card"><div class="place-card-header"><h4>Libraria Bar</h4><span class="place-tag tag-night">Bar</span></div><div class="place-rating">★ 4.0</div><p class="place-desc">Authentic vibe, unique art, live music Wednesdays. Mojitos & darts.</p><div class="place-links"><a href="https://www.google.com/maps/place/?q=place_id:ChIJsVc6DDsxUBMRnc7DVTzM4k0" target="_blank">📍 Map</a></div></div>
-    </div>
-
-    <div class="guidebook-cta">
-      <h3>📖 Airbnb Guidebook</h3>
-      <p>View the full interactive guide with maps on Airbnb.</p>
-      <a href="https://www.airbnb.com/l/zypnklRS" target="_blank" rel="noopener" class="guidebook-btn">Open Full Guide →</a>
-    </div>
+<!-- ═══ RETURN ═══ -->
+<section class="section" id="return"><div class="reveal">
+  <span class="section-label"><span data-lang-sq>Kthimi</span><span data-lang-en>Return</span></span>
+  <h2 data-lang-sq>Nga Shtëpia në Aeroport</h2><h2 data-lang-en>From Home to Airport</h2>
+  <p class="section-intro" data-lang-sq>Rruga nga qendra drejt aeroportit: 25-40 minuta.</p>
+  <p class="section-intro" data-lang-en>Drive from center to airport: 25-40 minutes.</p>
+  <div class="steps">
+    <div class="step"><div class="step-number">1</div><div class="step-content">
+      <h3 data-lang-sq>Planifikoni kohën</h3><h3 data-lang-en>Plan your timing</h3>
+      <p data-lang-sq>Minimum <strong>2 orë para</strong> fluturimit ndërkombëtar, <strong>1.5 orë</strong> për brenda vendit.</p>
+      <p data-lang-en>At least <strong>2 hours before</strong> international flights, <strong>1.5 hours</strong> domestic.</p>
+      <div class="tip"><span class="tip-icon">⏰</span><span data-lang-sq><strong>Shembull:</strong> Fluturimi 14:00 → nisuni jo më vonë se 11:00. Trafiku (07:00–09:30 dhe 16:00–18:30) mund ta zgjasë.</span><span data-lang-en><strong>Example:</strong> Flight 2:00 PM → leave by 11:00 AM. Rush hour (07:00–09:30 and 16:00–18:30) can add time.</span></div>
+    </div></div>
+    <div class="step"><div class="step-number">2</div><div class="step-content">
+      <h3 data-lang-sq>Checklist check-out</h3><h3 data-lang-en>Check-out checklist</h3>
+      <div class="tip"><span class="tip-icon">✅</span><span data-lang-sq>Peshqirët në një vend • Plehrat jashtë • Lani enët • Fikni AC & dritat • Mbyllni dritaret • Çelësat ku ju treguam</span><span data-lang-en>Gather towels • Take out trash • Wash dishes • Turn off AC & lights • Close windows • Leave keys where shown</span></div>
+    </div></div>
+    <div class="step"><div class="step-number">3</div><div class="step-content">
+      <h3 data-lang-sq>Transporti</h3><h3 data-lang-en>Transport</h3>
+      <div class="tip"><span class="tip-icon">🚕</span><span data-lang-sq><strong>Taksi:</strong> Porosisni 15-20 min para. Speed Taxi / Merr Taxi — 2,500–3,500 ALL.</span><span data-lang-en><strong>Taxi:</strong> Order 15-20 min ahead. Speed Taxi / Merr Taxi — 2,500–3,500 ALL.</span></div>
+      <div class="tip" style="margin-top:0.5rem"><span class="tip-icon">🚗</span><span data-lang-sq><strong>Transfer privat:</strong> Na njoftoni 1 ditë para.</span><span data-lang-en><strong>Private transfer:</strong> Let us know 1 day ahead.</span></div>
+      <div class="tip" style="margin-top:0.5rem"><span class="tip-icon">🚌</span><span data-lang-sq><strong>Autobus:</strong> Stacioni Qendror → Aeroport (çdo 1 orë, ~400 ALL).</span><span data-lang-en><strong>Bus:</strong> Central Station → Airport (every hour, ~400 ALL).</span></div>
+      <a href="https://maps.app.goo.gl/kTAYupSU9u2ub8sq7" target="_blank" class="map-link"><span data-lang-sq>📍 Stacioni Qendror →</span><span data-lang-en>📍 Central Station →</span></a>
+    </div></div>
+    <div class="step"><div class="step-number">4</div><div class="step-content">
+      <h3 data-lang-sq>Në aeroport</h3><h3 data-lang-en>At the airport</h3>
+      <p data-lang-sq>TIA ka një terminal. Siguria zgjat 10-20 min.</p>
+      <p data-lang-en>TIA has one terminal. Security takes 10-20 min.</p>
+      <div class="tip"><span class="tip-icon">🛒</span><span data-lang-sq>Pas sigurisë: duty-free, kafene, suveniret. Shpenzoni Lekët e mbetura!</span><span data-lang-en>Past security: duty-free, cafés, souvenirs. Spend your remaining Lek!</span></div>
+      <div class="tip" style="margin-top:0.5rem"><span class="tip-icon">🚗</span><span data-lang-sq><strong>Makinë me qira:</strong> "Car Rental Return" — dorëzojeni 30 min para.</span><span data-lang-en><strong>Rental car:</strong> Follow "Car Rental Return" signs — drop off 30 min early.</span></div>
+    </div></div>
   </div>
-</section>
+</div></section>
 
-<div class="divider"></div>
-
-<!-- RETURN -->
-<section class="section" id="return">
-  <div class="reveal">
-    <span class="section-label">Departure</span>
-    <h2>Returning to the Airport</h2>
-    <p class="section-intro">Plan ahead. The drive from city centre to TIA takes 25–40 minutes.</p>
-    <div class="steps">
-      <div class="step">
-        <div class="step-number">1</div>
-        <div class="step-content">
-          <h3>Plan Your Timing</h3>
-          <p>Allow <strong>2 hours before international flights</strong>, <strong>1.5 hours domestic</strong>.</p>
-          <div class="tip"><span class="tip-icon">⏰</span><span><strong>Example:</strong> Flight at 2 PM → leave by 11 AM. Rush hour (7–9:30 AM, 4–6:30 PM) adds time.</span></div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-number">2</div>
-        <div class="step-content">
-          <h3>Check-out Checklist</h3>
-          <div class="tip"><span class="tip-icon">✅</span><span>Gather used towels • Take out rubbish • Wash dishes • Turn off AC & lights • Close windows • Empty dryer tank if used • Leave keys where shown • Let us know when you leave</span></div>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-number">3</div>
-        <div class="step-content">
-          <h3>Transport Options</h3>
-          <div class="tip"><span class="tip-icon">🚕</span><span><strong>Taxi/App:</strong> Order 15–20 min early. 2,500–3,500 ALL.</span></div>
-          <div class="tip" style="margin-top:0.5rem"><span class="tip-icon">🚗</span><span><strong>Private transfer:</strong> Let us know 1 day ahead.</span></div>
-          <div class="tip" style="margin-top:0.5rem"><span class="tip-icon">🚌</span><span><strong>Bus:</strong> Central Station → Airport, every hour, ~400 ALL.</span></div>
-          <a href="https://maps.app.goo.gl/kTAYupSU9u2ub8sq7" target="_blank" class="map-link">📍 Central Station →</a>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-number">4</div>
-        <div class="step-content">
-          <h3>At the Airport</h3>
-          <p>Single terminal. Security takes 10–20 min. Duty-free and cafés after security.</p>
-          <div class="tip"><span class="tip-icon">💰</span><span>Don't forget to spend remaining Lek before you fly!</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer class="footer" id="contact">
-  <h3>Have Questions?</h3>
-  <p>We're here for you — don't hesitate to reach out!</p>
+  <h3 data-lang-sq>Keni pyetje?</h3><h3 data-lang-en>Any questions?</h3>
+  <p data-lang-sq>Jemi këtu për ju — mos hezitoni!</p><p data-lang-en>We're here for you — don't hesitate!</p>
   <div class="contact-row">
-    <a href="#" class="contact-pill">💬 Airbnb Message</a>
-    <a href="tel:+355000000000" class="contact-pill">📞 Call Us</a>
+    <a href="#" class="contact-pill"><span data-lang-sq>💬 Mesazh Airbnb</span><span data-lang-en>💬 Airbnb Message</span></a>
+    <a href="tel:+355000000000" class="contact-pill"><span data-lang-sq>📞 Telefono</span><span data-lang-en>📞 Call us</span></a>
     <a href="https://wa.me/355000000000" target="_blank" class="contact-pill">📲 WhatsApp</a>
   </div>
-  <p class="footer-note">Thank you for choosing our apartment in Tirana. Enjoy your stay!</p>
+  <p class="footer-note" data-lang-sq>Faleminderit që zgjodhët apartamentin tonë. Shpresojmë ta shijoni qëndrimin!</p>
+  <p class="footer-note" data-lang-en>Thank you for choosing our apartment. We hope you enjoy your stay!</p>
 </footer>
 
+<nav class="mobile-nav"><div class="mobile-nav-inner">
+  <a href="#airport"><span class="mn-icon">✈️</span><span data-lang-sq>Aeroport</span><span data-lang-en>Airport</span></a>
+  <a href="#checkin"><span class="mn-icon">🔑</span>Check-in</a>
+  <a href="#rules"><span class="mn-icon">📋</span><span data-lang-sq>Rregulla</span><span data-lang-en>Rules</span></a>
+  <a href="#guidebook"><span class="mn-icon">🗺️</span><span data-lang-sq>Guida</span><span data-lang-en>Guide</span></a>
+  <a href="#return"><span class="mn-icon">🛫</span><span data-lang-sq>Kthimi</span><span data-lang-en>Return</span></a>
+  <a href="#contact"><span class="mn-icon">💬</span><span data-lang-sq>Kontakt</span><span data-lang-en>Contact</span></a>
+</div></nav>
+
 <script>
-  document.querySelectorAll('.reveal').forEach(el => {
-    new IntersectionObserver(([e]) => { if (e.isIntersecting) e.target.classList.add('visible'); }, { threshold: 0.1 }).observe(el);
-  });
-  const secs = document.querySelectorAll('section, footer');
-  const dots = document.querySelectorAll('.side-nav a');
-  secs.forEach(s => {
-    new IntersectionObserver(([e]) => {
-      if (e.isIntersecting) { dots.forEach(d => d.classList.remove('active')); const a = document.querySelector(`.side-nav a[href="#${e.target.id}"]`); if (a) a.classList.add('active'); }
-    }, { threshold: 0.3 }).observe(s);
-  });
-  document.querySelectorAll('.guide-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.guide-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      tab.classList.add('active');
-      document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
-    });
-  });
+function setLang(l){
+  document.body.classList.toggle('en',l==='en');
+  document.documentElement.lang=l;
+  document.querySelectorAll('.lang-toggle button').forEach(b=>b.classList.toggle('active',b.textContent.includes(l.toUpperCase())));
+  try{localStorage.setItem('gl',l)}catch(e){}
+}
+try{if(localStorage.getItem('gl')==='en')setLang('en')}catch(e){}
+
+const rev=document.querySelectorAll('.reveal');
+new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.1}).observe&&rev.forEach(el=>new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:0.1}).observe(el));
+
+const secs=document.querySelectorAll('section,footer'),dots=document.querySelectorAll('.side-nav a'),mlinks=document.querySelectorAll('.mobile-nav a');
+new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){const id=x.target.id;dots.forEach(d=>d.classList.remove('active'));mlinks.forEach(l=>l.classList.remove('active'));const d=document.querySelector(`.side-nav a[href="#${id}"]`),m=document.querySelector(`.mobile-nav a[href="#${id}"]`);if(d)d.classList.add('active');if(m)m.classList.add('active')}}),{threshold:0.3}).observe&&secs.forEach(s=>new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){const id=x.target.id;dots.forEach(d=>d.classList.remove('active'));mlinks.forEach(l=>l.classList.remove('active'));const d=document.querySelector(`.side-nav a[href="#${id}"]`),m=document.querySelector(`.mobile-nav a[href="#${id}"]`);if(d)d.classList.add('active');if(m)m.classList.add('active')}}),{threshold:0.3}).observe(s));
+
+document.querySelectorAll('.guide-tab').forEach(t=>t.addEventListener('click',()=>{document.querySelectorAll('.guide-tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(x=>x.classList.remove('active'));t.classList.add('active');document.getElementById('tab-'+t.dataset.tab).classList.add('active')}));
 </script>
 </body>
 </html>
